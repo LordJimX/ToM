@@ -393,9 +393,6 @@ function DG_auto_upgrade(){
     debug("Start buying DG upgrade");
     tooltip("Upgrade Generator", null, "update");
     AutoDGInterval = setInterval(buy_next_DG_upgrade, AutoDGIntervalTime);
-    document.getElementById("natureA").click();
-    AutoNatureInterval = setInterval(buy_next_nature_upgrade, AutoNatureIntervalTime);
-    document.getElementById("allA").click();
 }
 
 function buy_next_nature_upgrade(){
@@ -455,6 +452,9 @@ function buy_next_DG_upgrade(){
         debug('No more DG upgrade affordable');
         clearInterval(AutoDGInterval);
         cancelTooltip();
+        document.getElementById("natureA").click();
+        AutoNatureInterval = setInterval(buy_next_nature_upgrade, AutoNatureIntervalTime);
+        document.getElementById("allA").click();
     }
 }
 
