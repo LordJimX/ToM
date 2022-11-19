@@ -371,10 +371,11 @@ function buy_nextShield_upgrade(){
 }
 
 //----------------------------------------------------------------------------
-// DG auto upgrade
+// DG & Nature auto upgrade
 //----------------------------------------------------------------------------
 var AutoDGInterval;
 var AutoDGIntervalTime = 1000;
+var AutoNatureIntervalTime = 1000;
 
 let div_autoDG = document.createElement("div");
 div_autoDG.setAttribute("id", "autoDG");
@@ -384,17 +385,36 @@ custo_zone1.children[2].append(div_autoDG);
 
 let div_autoDG_txt = document.createElement("div");
 div_autoDG_txt.setAttribute("id", "autoDGText");
-div_autoDG_txt.innerHTML = "Auto DG";
+div_autoDG_txt.innerHTML = "Auto DG & Nature";
 div_autoDG_txt.setAttribute("onClick", "DG_auto_upgrade()");
 div_autoDG.append(div_autoDG_txt);
 
 function DG_auto_upgrade(){
     debug("Start buying DG upgrade");
     tooltip("Upgrade Generator", null, "update");
-    AutoDGInterval = setInterval(buy_nextDG_upgrade, AutoDGIntervalTime);
+    AutoDGInterval = setInterval(buy_next_DG_upgrade, AutoDGIntervalTime);
+    document.getElementById("natureA").click();
+    AutoNatureInterval = setInterval(buy_next_nature_upgrade, AutoNatureIntervalTime);
+    document.getElementById("allA").click();
 }
 
-function buy_nextDG_upgrade(){
+function buy_next_nature_upgrade(){
+    while (document.getElementById("natureUpgradePoisonCost").children[0].classList.contains("green")){
+        debug('Buy Poison');
+        naturePurchase('upgrade', 'Poison');
+    }
+    while (document.getElementById("natureUpgradeWindCost").children[0].classList.contains("green")){
+        debug('Buy Wind');
+        naturePurchase('upgrade', 'Wind');
+    }
+    while (document.getElementById("natureUpgradeIceCost").children[0].classList.contains("green")){
+        debug('Buy Ice');
+        naturePurchase('upgrade', 'Ice');
+    }
+    clearInterval(AutoNatureInterval);
+}
+
+function buy_next_DG_upgrade(){
     effi_lvl = parseInt(document.getElementById('generatorUpgradeEfficiency').innerHTML.substring(14));
     capa_lvl = parseInt(document.getElementById('generatorUpgradeCapacity').innerHTML.substring(12));
     supp_lvl = parseInt(document.getElementById('generatorUpgradeSupply').innerHTML.substring(10));
@@ -433,7 +453,7 @@ function buy_nextDG_upgrade(){
     }
     else{
         debug('No more DG upgrade affordable');
-        clearInterval(AutoDGInterval)
+        clearInterval(AutoDGInterval);
         cancelTooltip();
     }
 }
