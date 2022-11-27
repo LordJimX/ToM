@@ -5,8 +5,8 @@ function debug(text){
 //----------------------------------------------------------------------------
 // Customised zone
 //----------------------------------------------------------------------------
-// Auto Shield | Auto Staff | Auto DG | Get Perky
-// Auto Weapon
+// Auto Shield | Auto Staff | Auto DG | Auto Weapon
+// Get U1 Perk | Get U2 Perk
 let custo_zone1 = document.createElement("div");
 custo_zone1.setAttribute("class", "row");
 custo_zone1.innerHTML = '\
@@ -25,26 +25,49 @@ document.getElementById("buildingsTitleDiv").insertBefore(custo_zone2, document.
 document.getElementById("buildingsTitleDiv").insertBefore(custo_zone1, document.getElementById("buildingsTitleDiv").children[0]);;
 
 //----------------------------------------------------------------------------
-// Get Perky from current save
+// Get U1 Perk from current save
 //----------------------------------------------------------------------------
-let div_Perky = document.createElement("div");
-div_Perky.setAttribute("id", "Perky");
-div_Perky.setAttribute("class", "toggleConfigBtn pointer noselect settingBtn3 autoUpgradeBtn");
-div_Perky.setAttribute("style", "display: block;");
-custo_zone1.children[3].append(div_Perky);
+let div_U1_Perk = document.createElement("div");
+div_U1_Perk.setAttribute("id", "U1_Perk");
+div_U1_Perk.setAttribute("class", "toggleConfigBtn pointer noselect settingBtn3 autoUpgradeBtn");
+div_U1_Perk.setAttribute("style", "display: block;");
+custo_zone2.children[0].append(div_U1_Perk);
 
-let div_Perky_txt = document.createElement("div");
-div_Perky_txt.setAttribute("id", "PerkyText");
-div_Perky_txt.setAttribute("onClick", "get_Perky()");
-div_Perky_txt.innerHTML = "Get Perky";
-div_Perky.append(div_Perky_txt);
+let div_U1_Perk_txt = document.createElement("div");
+div_U1_Perk_txt.setAttribute("id", "U1_PerkText");
+div_U1_Perk_txt.setAttribute("onClick", "get_U1_Perk()");
+div_U1_Perk_txt.innerHTML = "Get U1_Perk";
+div_U1_Perk.append(div_U1_Perk_txt);
 
-function get_Perky(){
+function get_U1_Perk(){
     save_string = save(true);
     navigator.clipboard.writeText(save_string);
     portalClicked();
     tooltip('Import Perks', null, 'update');
     window.open("https://grimy.github.io/perks.html");
+}
+
+//----------------------------------------------------------------------------
+// Get U2 Perk from current save
+//----------------------------------------------------------------------------
+let div_U2_Perk = document.createElement("div");
+div_U2_Perk.setAttribute("id", "U2_Perk");
+div_U2_Perk.setAttribute("class", "toggleConfigBtn pointer noselect settingBtn3 autoUpgradeBtn");
+div_U2_Perk.setAttribute("style", "display: block;");
+custo_zone2.children[1].append(div_U2_Perk);
+
+let div_U2_Perk_txt = document.createElement("div");
+div_U2_Perk_txt.setAttribute("id", "U2_PerkText");
+div_U2_Perk_txt.setAttribute("onClick", "get_U2_Perk()");
+div_U2_Perk_txt.innerHTML = "Get U2_Perk";
+div_U2_Perk.append(div_U2_Perk_txt);
+
+function get_U2_Perk(){
+    save_string = save(true);
+    navigator.clipboard.writeText(save_string);
+    portalClicked();
+    tooltip('Import Perks', null, 'update');
+    window.open("https://nsheetz.github.io/perks/");
 }
 
 
@@ -500,16 +523,16 @@ const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
 
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Built a button to equip with the most efficient equipments while affordable
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 var health = ['Boots', 'Helmet', 'Pants', 'Shoulderguards', 'Breastplate', 'Gambeson'];
 var attack = ['Dagger', 'Mace', 'Polearm', 'Battleaxe', 'Greatsword', 'Arbalest'];
 var option = "Weapon";
 var AutoMaxEquipInterval;
 var AutoMaxEquipIntervalTime = 100;
 
-var element = custo_zone2.children[3];
+var element = custo_zone1.children[3];
 
 let div1 = document.createElement("div");
 div1.setAttribute("id", "autoWeapon");
