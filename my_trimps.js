@@ -419,20 +419,23 @@ function DG_auto_upgrade(){
 }
 
 function buy_next_nature_upgrade(){
-    while (document.getElementById("natureUpgradePoisonCost").children[0].classList.contains("green")){
+    if (document.getElementById("natureUpgradePoisonCost").children[0].classList.contains("green")){
         debug('Buy Poison');
         naturePurchase('upgrade', 'Poison');
     }
-    while (document.getElementById("natureUpgradeWindCost").children[0].classList.contains("green")){
+    else if (document.getElementById("natureUpgradeWindCost").children[0].classList.contains("green")){
         debug('Buy Wind');
         naturePurchase('upgrade', 'Wind');
     }
-    while (document.getElementById("natureUpgradeIceCost").children[0].classList.contains("green")){
+    else if (document.getElementById("natureUpgradeIceCost").children[0].classList.contains("green")){
         debug('Buy Ice');
         naturePurchase('upgrade', 'Ice');
     }
-    clearInterval(AutoNatureInterval);
-    document.getElementById("allA").click();
+    else {
+        debug('No more Nature upgrade');
+        clearInterval(AutoNatureInterval);
+        document.getElementById("allA").click();
+    }
 }
 
 function buy_next_DG_upgrade(){
