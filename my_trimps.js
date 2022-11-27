@@ -36,7 +36,7 @@ custo_zone2.children[0].append(div_U1_Perk);
 let div_U1_Perk_txt = document.createElement("div");
 div_U1_Perk_txt.setAttribute("id", "U1_PerkText");
 div_U1_Perk_txt.setAttribute("onClick", "get_U1_Perk()");
-div_U1_Perk_txt.innerHTML = "Get U1_Perk";
+div_U1_Perk_txt.innerHTML = "Get U1 Perk";
 div_U1_Perk.append(div_U1_Perk_txt);
 
 function get_U1_Perk(){
@@ -59,7 +59,7 @@ custo_zone2.children[1].append(div_U2_Perk);
 let div_U2_Perk_txt = document.createElement("div");
 div_U2_Perk_txt.setAttribute("id", "U2_PerkText");
 div_U2_Perk_txt.setAttribute("onClick", "get_U2_Perk()");
-div_U2_Perk_txt.innerHTML = "Get U2_Perk";
+div_U2_Perk_txt.innerHTML = "Get U2 Perk";
 div_U2_Perk.append(div_U2_Perk_txt);
 
 function get_U2_Perk(){
